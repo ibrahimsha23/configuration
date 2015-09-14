@@ -1,0 +1,14 @@
+installation;
+sudo apt-get update
+sudo apt-get install openssh-server
+sudo ufw allow 22
+
+connect to remote host;
+scp -r ladduz-05@192.168.0.8:/home/ladduz-05/WorkSpace/backup/FullServerBkp  /home/ibrahim
+
+description;
+-r -recursive copy of folders
+ladduz-05@192.168.0.8(remote host):/remotelocation /locallocation
+
+Note;
+try to execute scp -r command as sudo 

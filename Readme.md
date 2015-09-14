@@ -1,1 +1,1 @@
-This repoistories is for collection of inatallation procedures./.../
+This repoistories is for collection of installation procedures./.../

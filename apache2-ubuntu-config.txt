@@ -1,0 +1,36 @@
+
+Install Apache2:
+apt-get install apache2
+
+Re install Apache2:
+where is apache2
+rm  /etc/apache(example)
+sudo apt-get --purge remove apache2
+sudo apt-get autoremove
+
+
+Apache 2.4 config:
+
+change the DocumentRoot path in 000-default.conf
+change the Directory path in apache.conf
+
+in apache.conf file directory syntax has to be there..
+  <Directory /home/ladduz-05/Pictures >	
+	  AllowOverride None
+	  Require all granted
+  </Directory>
+
+
+Check the permissions on the directory. I would bet that it's set to deny access to anyone but yourself, for instance:
+
+$ ls -ld /home/remix
+drwx------ 92 remix remix 4096 Aug 17 22:59 /home/remix
+If you see drwx------ exactly, then this is the case. Fix it by running:
+
+chmod a+x /home/remix
+(if its changes path will be in green color and for more reference  http://serverfault.com/questions/418101/apache-client-denied-by-server-configuration-despite-allowing-access-to-direc?rq=1)
+
+
+
+
+

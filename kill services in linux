@@ -1,0 +1,5 @@
+# services listening on port 8000 
+lsof -i :8000 
+
+#kill the service
+kill -9 5313  

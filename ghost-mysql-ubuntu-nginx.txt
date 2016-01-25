@@ -1,0 +1,76 @@
+# desc:configuration for ghost-mysql-nginx-ubuntu
+
+# installation of ghost-mysql-nginx
+sudo apt-get update
+sudo aptitude install zip wget
+sudo mkdir -p /var/www/
+cd /var/www/
+sudo wget https://ghost.org/zip/ghost-latest.zipsudo unzip -d ghost ghost-latest.zip
+cd ghost/
+sudo apt-get install mysql-client mysql-server # installation of mysql
+
+# check version of node and npm(pre-installed means)
+node --version
+npm ---version
+
+
+# configuration of ghost
+/var/www/ghost/>cp config.examle.js config.js
+/var/www/ghost/config.js>change production url to 'urdomain.com' and devlopment url too 'urdomain.com'
+
+# start the application
+/var/www/ghost/>npm start # development server
+/var/www/ghost/>npm start --production #production
+
+# changing squlite-db(inbuilt) to mysql oin config.js of ghost directory
+database: {
+            client: 'mysql',
+            connection: {
+                    host: 'localhost',
+                    user: 'root',
+                    password: 'root',
+                    database: 'sample_db',
+                    charset: 'utf8'
+            }
+    },
+
+# configuration of nginx-ghost
+
+# blog.conf is file
+cd /etc/nginx/sites-available/blog.conf>
+server {
+    listen 80;
+    server_name blog.intrick.com;
+    location / {
+        proxy_set_header   X-Real-IP $remote_addr;
+        proxy_set_header   Host      $http_host;
+        proxy_pass         http://127.0.0.1:2368;
+    }
+}
+
+add sym link to sites enabled with same file name in /etc/nginx/sites-enabled/
+
+# start the nginx application
+sudo service nginx start
+http://urdomain.com in browser(it should work)
+http://urdomain.com/ghost to setup the blog account (setup is only once)
+
+# add ghost application into upstart 
+  ghost.conf is a file
+cd /etc/init/ghost.conf>
+start on startup
+
+script
+   cd /var/www/ghost
+   sudo npm start --production
+end script
+sudo service ghost start
+
+ref links:
+https://www.digitalocean.com/community/tutorials/how-to-create-a-blog-with-ghost-and-nginx-on-ubuntu-14-04
+https://www.youtube.com/watch?v=drvpDX5ENtE
+https://www.howtoinstallghost.com/how-to-start-ghost-with-forever/
+http://0v.org/installing-ghost-on-ubuntu-nginx-and-mysql/
+
+
+

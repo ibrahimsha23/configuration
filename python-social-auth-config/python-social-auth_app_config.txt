@@ -1,0 +1,41 @@
+# configuration for facebook and google login using python-social-auth 
+
+#Facebook
+
+login into https://developers.facebook.com/
+
+select the platform as WWW(Website)
+
+create new fb id
+
+choose the category(Any, This is not going to affect you anywhere)
+
+click quick start--->it will redirect to dashboard, generate app id and app secret
+
+click settings-->add platform as website
+
+add domain as in development localhost:3000/ and in production www.app.com
+
+add app domain as in development localhost  and in production www.app.com
+
+# Google (supports 0auth2 and depreceated oauth1 )
+
+login in to https://console.developers.google.com/home/dashboard
+
+create the project in dashboard
+
+enable the apis(enable gmail and googleplus api to access basic information of users)
+
+create the credentials by selecting  oauth clientid
+
+
+configure the consent screen(enter the product name and save it)
+
+click create client id and select the web application type 
+
+In authorized javascript origins --> http://localhost:3000
+
+In authorized redirect URI's --->http://localhost:3000/complete/google-oauth2/
+
+# see config.py for django setup of python social auth
+

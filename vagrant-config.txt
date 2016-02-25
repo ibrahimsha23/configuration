@@ -1,0 +1,23 @@
+vagrant init # to create a Vagrant file contains all info of vagrant , virtual box setup
+vagrant box add hashicorp/precise64 # add boxes in vagrant
+vagrant up # to run
+vagrant destroy # to destory
+vagrant ssh # to enter via ssh in command line
+files and folderes will be sync to virtual /vagrant directory
+create bootstrap.sh file in directory # in that add the code{
+#!/usr/bin/env bash
+
+apt-get update
+apt-get install -y apache2
+if ! [ -L /var/www ]; then
+  rm -rf /var/www
+  ln -fs /vagrant /var/www
+fi
+}
+config.vm.provision :shell, path: "bootstrap.sh" # add in Vagrant File
+vagrant ssh
+vagrant@precise64:~$ wget -qO- 127.0.0.1
+config.vm.network :forwarded_port, guest: 80, host: 4567 # Add line in Vagrant file ;port and host machine configure ;load http://127.0.0.1:4567 in your browser
+vagrant login #Free Account has to be in atlas.hashicorp.com
+vagrant share # Anyone in the world can access ur machine through given url by vagrant 
+vagrant up # rebuild

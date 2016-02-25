@@ -1,0 +1,7 @@
+# configuration fo forgot passwd
+mount -o remount,rw / 
+Now you are a super-user on this system. Tread lightly.Then edit the password shadow file to remove the encrypted password for your username. 
+Type in:
+nano -B /etc/shadow 
+The nano editor will display the contents of the file. Each line will have the form name:⋯:⋯:⋯… where ⋯ is a string or null (empty). One of the lines will start with your username. The first ⋯ after your username is your encrypted password. As an example:username:$1$amFeNcjp$PprjCKEVk3UtzKwWfEMOY0:14920:0:99999:7::: where$1$amFeNcjp$PprjCKEVk3UtzKwWfEMOY0is the encrypted password.Carefully delete the encrypted password leaving the all the ":"s, so it looks like this:username::14920:0:99999:7::: Then type Ctrl+O, press the Enterkey to save, then Ctrl+X to closenano.
+Reboot and you will have an empty (or null) password. Be sure to use passwd username in a terminal to set or reset your user password.

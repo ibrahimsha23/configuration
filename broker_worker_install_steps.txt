@@ -1,0 +1,34 @@
+#Update the Package List 
+sudo apt-get update
+
+#Install Rabbit MQ(Message Broker)
+sudo apt-get install rabbitmq-server
+
+# Install rabbit management plugins
+rabbitmq-plugins enable rabbitmq_management
+
+# Install Celery as python package
+pip install celery
+
+References:
+https://dzone.com/articles/exploring-message-brokers
+http://docs.celeryproject.org/en/latest/getting-started/first-steps-with-celery.html
+
+
+STEPS:
+1. Go to your project Location
+2. Activate the Virtual Environment
+3. export DJANGO_SETTINGS_MODULE=watdoc.settings
+4. export C_FORCE_ROOT="true"
+5. celery -A watdoc worker -l info --beat
+
+
+Monitor the Message Broker
+
+1. Hit the following url localhost:15672 in web browser
+2. username:guest 
+3. passsword:guest
+
+Run Celery as Daemon Process (This for Production)
+  yet to be define
+

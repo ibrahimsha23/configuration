@@ -4,7 +4,7 @@ sudo apt-get install putty-tools
 ```
 2. Convert ppk to pem
 ```
-puttygen ubuntu.ppk -O private-openssh -o ubuntu.pem
+sudo puttygen ubuntu.ppk -O private-openssh -o  ubuntu.pem
 ```
 3. Change to read permissions
 ```

@@ -45,6 +45,8 @@ sudo ufw allow 'OpenSSH'
 ```
 sudo certbot --nginx -d example.com -d www.example.com
 ```
+
+Renewal
 ```
-sudo certbot renew --dry-run(for renewal)
+sudo certbot renew --dry-run
 ```
